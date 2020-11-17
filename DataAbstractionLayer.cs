@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,16 +20,16 @@ namespace Check_Point2
         internal static IEnumerable<Eleve> SelectAllStudent()
         {
             SqlCommand command = _connection.CreateCommand();
-            command.CommandText = " SELECT EleveId,Prenom,Nom FROM Eleve";
+            command.CommandText = "SELECT AVG(Controle.Note) AS Moyenne ,Eleve.Nom,Eleve.Prenom FROM Controle JOIN Eleve ON Eleve.EleveId = Controle.FK_EleveId Group by Eleve.Nom,Eleve.Prenom";
             SqlDataReader reader = command.ExecuteReader();
             List<Eleve> Eleves = new List<Eleve>();
             while (reader.Read())
             {
                 Eleve newEleve = new Eleve
                 {
-                    EleveId = reader.GetInt32(0),
-                    Prenom = reader.GetString(1),
-                    Nom = reader.GetString(2),
+                    Moyenne = reader.GetInt32(0),
+                    Nom = reader.GetString(1),
+                    Prenom =reader.GetString(2)
                 };
                 Eleves.Add(newEleve);
             }
