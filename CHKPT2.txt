@@ -1,0 +1,46 @@
+CREATE DATABASE CheckPoint2
+
+GO
+
+USE CheckPoint2
+
+GO
+
+CREATE TABLE Promo(
+	PromoId INT PRIMARY KEY IDENTITY (1,1),
+	PromoLangue VARCHAR(50),
+);
+
+GO
+
+CREATE TABLE Eleve(
+	EleveId INT PRIMARY KEY IDENTITY (1,1),
+	Prenom VARCHAR(50),
+	Nom VARCHAR(50),
+	FK_PromoId INT FOREIGN KEY REFERENCES Promo(PromoId),
+);
+
+GO
+
+CREATE TABLE Controle(
+	ControleId INT PRIMARY KEY IDENTITY (1,1),
+	Note int,
+	FK_EleveId INT FOREIGN KEY REFERENCES Eleve(EleveId),
+);
+
+GO
+
+INSERT INTO Promo(PromoLangue)
+VALUES ('Anglais'),('Espagnol');
+
+GO
+
+INSERT INTO Eleve(Prenom,nom,FK_PromoId)
+VALUES ('A','AA',1),('B','BB',1),('C','CC',1),('D','DD',1),('E','EE',1),('F','FF',2),('G','GG',2),('H','HH',2),('I','II',2),('J','JJ',2);
+
+GO
+
+INSERT INTO Controle(note,FK_EleveId)
+VALUES (12,1),(18,1),(20,2),(12,2),(10,3),(17,3),(8,4),(16,4),(14,5),(18,5);
+
+GO
