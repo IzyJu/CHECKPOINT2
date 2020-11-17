@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 
@@ -17,7 +17,7 @@ namespace Check_Point2
             IEnumerable<Eleve> Eleves = DataAbstractionLayer.SelectAllStudent();
             foreach(Eleve eleve in Eleves)
             {
-                Console.WriteLine("Nom : {0}   Prenom : {1}", eleve.Nom,eleve.Prenom);
+                Console.WriteLine("Nom : {0}    Prenom : {1}    Moyenne : {2}",eleve.Nom,eleve.Prenom,eleve.Moyenne);
             }
 
             IEnumerable<Eleve> Eleves2 = DataAbstractionLayer.SelectStudentByLastname("AA");
