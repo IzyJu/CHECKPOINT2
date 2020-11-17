@@ -1,0 +1,3 @@
+SELECT AVG(Controle.Note) AS Moyenne ,Eleve.Nom FROM Controle
+JOIN Eleve ON Eleve.EleveId = Controle.FK_EleveId
+Group by Eleve.Nom
